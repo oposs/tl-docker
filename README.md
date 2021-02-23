@@ -12,13 +12,16 @@ docker image will be hosted on docker hub.
 
 ## Startup
 
-Normally docker will run a single application often only a single process.
-In order to demo thinlinc we get docker to run an entire linux box for us.
-For this to work it needs to run in `--privileged` mode. The thinlinc client uses
-ssh to communicate with its server, with the `--publish` option you map the
-ssh port of the thinlinc demo server to a port, accessible from the outside.
-You may also have to adjust your firewall appropriately. For now we keep the
-docker attached to the terminal `-t` to be able to see all the messages it outputs
+Normally docker will run a single application. Often only a single process.
+In order to demo thinlinc we get docker to run an entire linux system for us.
+For this to work docker needs to run in `--privileged` mode. 
+
+The thinlinc client uses ssh to communicate with its server, 
+with the `--publish` option you map the ssh port of the thinlinc demo server
+to a port, accessible from the outside. 
+
+You may also have to adjust your firewall appropriately. For now, keep the
+docker attached to the terminal `-t` to see all the messages it outputs
 to the console.
 
 ```console
@@ -27,7 +30,7 @@ $ docker run --privileged --name my-tl-demo --publish 9922:22 -t tl-ubuntu
 
 ## Configuration
 
-Before we can login, the thinlinc server requires some minimal configuration
+Before you can login, the thinlinc server requires some minimal configuration
 
 First add a user account
 
@@ -35,17 +38,17 @@ First add a user account
 $ docker exec my-tl-demo tlcfg add-user myuser mypassword
 ```
 
-Second, let the thinlinc server know under what hostname it is reachable from the outside.
-this is a very important step, as thinlinc uses a load-balancing system where it will
-send your client the thinlinc server with the lowest load in your Thinlinc cluster. This
-even happens with a single machine. 
+Second, let the thinlinc server know under what hostname it is reachable from the client.
+This is a very important step, as thinlinc uses a load-balancing system where it will
+tell your client to connect to the the thinlinc server with the lowest
+load in your thinlinc cluster.
 
 ```console
 $ docker exec my-tl-demo tlcfg set-hostname $(hostname -f)
 ```
 
-Now all is ready for accessing your thinlinc server using the thinlinc client. Make sure to
-configure the thinlinc client to use the right port number for accessing.
+Now all is ready for accessing the thinlinc server using the thinlinc client. Make sure to
+configure the thinlinc client to use the right port number.
 
 ## Cleanup
 
