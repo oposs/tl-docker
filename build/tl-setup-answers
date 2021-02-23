@@ -1,0 +1,16 @@
+install-pygtk=yes
+email-address=root@localhost
+setup-selinux=no
+setup-nearest=no
+server-type=master
+setup-firewall=no
+install-python-ldap=yes
+setup-apparmor=no
+missing-answer=abort
+install-nfs=yes
+setup-thinlocal=no
+install-sshd=no
+tlwebadm-password=RH0KnE6efAOWQLiLRzrVaif9BxnZ1V6GwJMY9nNQvg95rNhSJRgOf.ej42J3xM.oLNzmyfbBeQrzU/HgPEXoh.
+accept-eula=yes
+migrate-conf=ignore
+install-required-libs=yes
