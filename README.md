@@ -28,7 +28,7 @@ to the console.
 $ docker run --privileged --name my-tl-demo --publish 9922:22 -t tl-ubuntu
 ```
 
-Pro Tip: If you feel uneasy about giving the thinlink docker full system
+Pro Tip: If you feel uneasy about giving the thinlinc docker full system
 access using the `--privileged` option you can also use the following
 commandline to start.
 
