@@ -32,7 +32,7 @@ Pro Tip: If you feel uneasy about giving the thinlink docker full system
 access using the `--privileged` option you can also use the following
 commandline to start.
 
-```console
+```bash
 $ docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro --cap-add SYS_PTRACE --cap-add SYS_ADMIN \
   --tmpfs /run --tmpfs /run/tmpfs --name my-tl-demo --publish 9922:22 -t tl-ubuntu
 ```
