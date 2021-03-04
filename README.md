@@ -12,9 +12,14 @@ docker image will be hosted on docker hub.
 
 ## Startup
 
-Normally docker will run a single application. Often only a single process.
-In order to demo thinlinc we get docker to run an entire linux system for us.
-For this to work docker needs to run in `--privileged` mode. 
+First you have to install docker. If you are running ubuntu, docker will be
+available as a package for installation. If you are on windows or macos you
+can go to docker.com to download docker for your os. If you are on RedHat,
+install `podman-docker` to get a docker compatible cli for podman.
+
+Normally a docker image will run a single application.  Often only a single
+process.  In order to demo thinlinc we get docker to run an entire linux
+system for us.  For this to work, docker needs to run in `--privileged` mode.
 
 The thinlinc client uses ssh to communicate with its server, 
 with the `--publish` option you map the ssh port of the thinlinc demo server
@@ -28,8 +33,8 @@ to the console.
 $ docker run --privileged --name my-tl-demo --publish 9922:22 -t tl-ubuntu
 ```
 
-Pro Tip: If you feel uneasy about giving the thinlinc docker full system
-access using the `--privileged` option you can also use the following
+Pro Tip: If you feel uneasy about giving the thinlinc docker image full
+system access using the `--privileged` option you can also use the following
 commandline to start.
 
 ```bash
