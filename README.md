@@ -15,13 +15,10 @@ Normally a docker image will run a single application.  Often only a single
 process.  In order to demo ThinLinc we get docker to run an entire linux
 system for us.  For this to work, docker needs to run in `--privileged` mode.
 
-The ThinLinc client uses ssh to communicate with its server, 
-with the `--publish` option you map the ssh port of the ThinLinc demo server
-to a port, accessible from the outside. 
-
-You may also have to adjust your firewall appropriately. For now, keep the
-docker attached to the terminal `-t` to see all the messages it outputs
-to the console.
+The ThinLinc client uses ssh to communicate with its server, with the
+`--publish` option you map the ssh port of the ThinLinc demo server to a
+port, accessible from the outside.  Keep the docker attached to the terminal
+`-t` to see all the messages it outputs to the console.
 
 ```console
 docker run --privileged --name my-tl-demo --publish 9922:22 -t oposs/tl-ubuntu
@@ -49,13 +46,14 @@ First add a user account
 docker exec my-tl-demo tlcfg add-user myuser mypassword
 ```
 
-Second, let the ThinLinc server know under what hostname it is reachable from the client.
-This is a very important step, as ThinLinc uses a load-balancing system where it will
-tell your client to connect to the the ThinLinc server with the lowest
-load in your ThinLinc cluster. In this example we tell the ThinLinc server
-that it can be reached from the local machine. But you can also set the
-public IP or the dns name of your machine to make your demo instance
-available on your network.
+Second, let the ThinLinc server know under what hostname it is reachable
+from the client.  This is a very important step, as ThinLinc uses a
+load-balancing system where it will tell your client to connect to the the
+ThinLinc server with the lowest load in your ThinLinc cluster.
+
+In this example we tell the ThinLinc server that it can be reached from the
+local machine.  But you can also set the public IP or the dns name of your
+machine to make your demo instance available on your network.
 
 ```console
 docker exec my-tl-demo tlcfg set-hostname 127.0.0.1
