@@ -32,7 +32,7 @@ commandline to start.
 docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro \
   --tmpfs /run --tmpfs /run/tmpfs \
   --cap-add SYS_PTRACE --cap-add SYS_ADMIN \
-  --name my-tl-demo --publish 9922:22 -t
+  --name my-tl-demo --publish 9922:22 -t \
   oposs/tl-ubuntu
 ```
 
