@@ -30,7 +30,7 @@ commandline to start.
 
 ```console
 docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro \
-  --tmpfs /run --tmpfs /run/tmpfs \
+  --tmpfs /run --tmpfs /run/lock \
   --cap-add SYS_PTRACE --cap-add SYS_ADMIN \
   --name my-tl-demo --publish 9922:22 -t \
   oposs/tl-ubuntu
