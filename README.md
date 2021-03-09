@@ -31,7 +31,7 @@ docker run --privileged --name my-tl-demo --publish 9922:22 -t oposs/tl-ubuntu
 system access using the `--privileged` option you can also use the following
 commandline to start.
 
-```bash
+```console
 docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro \
   --tmpfs /run --tmpfs /run/tmpfs \
   --cap-add SYS_PTRACE --cap-add SYS_ADMIN \
