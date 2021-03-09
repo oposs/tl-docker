@@ -4,12 +4,6 @@ This is a docker based instance of ThinLinc. Running under docker its default
 behavior is to suffer from complete amnesia after each restart. As such
 it requires some minimal configuration after startup to accept your logins.
 
-## Build
-
-For now we are just building a local docker to try things out ... run the `build.sh`
-script to get this done. Later the build process will not be neccessary as the
-docker image will be hosted on docker hub.
-
 ## Startup
 
 First you have to install docker. If you are running ubuntu, docker will be
@@ -18,11 +12,11 @@ can go to docker.com to download docker for your os. If you are on RedHat,
 install `podman-docker` to get a docker compatible cli for podman.
 
 Normally a docker image will run a single application.  Often only a single
-process.  In order to demo thinlinc we get docker to run an entire linux
+process.  In order to demo ThinLinc we get docker to run an entire linux
 system for us.  For this to work, docker needs to run in `--privileged` mode.
 
-The thinlinc client uses ssh to communicate with its server, 
-with the `--publish` option you map the ssh port of the thinlinc demo server
+The ThinLinc client uses ssh to communicate with its server, 
+with the `--publish` option you map the ssh port of the ThinLinc demo server
 to a port, accessible from the outside. 
 
 You may also have to adjust your firewall appropriately. For now, keep the
@@ -30,58 +24,77 @@ docker attached to the terminal `-t` to see all the messages it outputs
 to the console.
 
 ```console
-$ docker run --privileged --name my-tl-demo --publish 9922:22 -t tl-ubuntu
+docker run --privileged --name my-tl-demo --publish 9922:22 -t oposs/tl-ubuntu
 ```
 
-Pro Tip: If you feel uneasy about giving the thinlinc docker image full
+**Pro Tip** If you feel uneasy about giving the ThinLinc docker image full
 system access using the `--privileged` option you can also use the following
 commandline to start.
 
 ```bash
-$ docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro --cap-add SYS_PTRACE --cap-add SYS_ADMIN \
-  --tmpfs /run --tmpfs /run/tmpfs --name my-tl-demo --publish 9922:22 -t tl-ubuntu
+docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro \
+  --tmpfs /run --tmpfs /run/tmpfs \
+  --cap-add SYS_PTRACE --cap-add SYS_ADMIN \
+  --name my-tl-demo --publish 9922:22 -t
+  oposs/tl-ubuntu
 ```
 
 ## Configuration
 
-Before you can login, the thinlinc server requires some minimal configuration
+Before you can login, the ThinLinc server requires some minimal configuration
 
 First add a user account
 
 ```console
-$ docker exec my-tl-demo tlcfg add-user myuser mypassword
+docker exec my-tl-demo tlcfg add-user myuser mypassword
 ```
 
-Second, let the thinlinc server know under what hostname it is reachable from the client.
-This is a very important step, as thinlinc uses a load-balancing system where it will
-tell your client to connect to the the thinlinc server with the lowest
-load in your thinlinc cluster.
+Second, let the ThinLinc server know under what hostname it is reachable from the client.
+This is a very important step, as ThinLinc uses a load-balancing system where it will
+tell your client to connect to the the ThinLinc server with the lowest
+load in your ThinLinc cluster. In this example we tell the ThinLinc server
+that it can be reached from the local machine. But you can also set the
+public IP or the dns name of your machine to make your demo instance
+available on your network.
 
 ```console
-$ docker exec my-tl-demo tlcfg set-hostname $(hostname -f)
+docker exec my-tl-demo tlcfg set-hostname 127.0.0.1
 ```
 
-Now all is ready for accessing the thinlinc server using the thinlinc client. Make sure to
-configure the thinlinc client to use the right port number.
+Now all is ready for accessing the ThinLinc server using the ThinLinc client. Make sure to
+configure the ThinLinc client to use the right port number.
+
+If you have not yet downloaded a ThinLinc client, you can download it
+[here](https://www.cendio.com/thinlinc/download). 
 
 ## Cleanup
 
-When you are done testing, you can get rid of your thinlinc demo server very easily:
+When you are done testing, you can get rid of your ThinLinc demo server very easily:
 
 ```console
 $ docker kill my-tl-demo
 $ docker rm my-tl-demo
 ```
 
-Note that this will also get rid of anything you have done on the thinlinc demo server
+Note that this will also get rid of anything you have done on the ThinLinc demo server
 while logged in with your demo user
 
 ## Debugging
 
-If you want to have a peak inside the thinlinc server while it is running, try this
+If you want to have a peak inside the ThinLinc server while it is running, try this
 
 ```console
 $ docker exec -ti my-tl-demo bash
+```
+
+## Build
+
+If you want to tinker with thinlinc, and modify it ... fork this repo and
+let me have a pull request. To get started, use the following command to
+rebuild the docker image locally.
+
+```console
+docker build --tag tl-ubuntu:latest .
 ```
 
 *EOF*
