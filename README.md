@@ -72,8 +72,8 @@ If you have not yet downloaded a ThinLinc client, you can download it
 When you are done testing, you can get rid of your ThinLinc demo server very easily:
 
 ```console
-$ docker kill my-tl-demo
-$ docker rm my-tl-demo
+docker kill my-tl-demo
+docker rm my-tl-demo
 ```
 
 Note that this will also get rid of anything you have done on the ThinLinc demo server
@@ -84,7 +84,7 @@ while logged in with your demo user
 If you want to have a peak inside the ThinLinc server while it is running, try this
 
 ```console
-$ docker exec -ti my-tl-demo bash
+docker exec -ti my-tl-demo bash
 ```
 
 ## Build
