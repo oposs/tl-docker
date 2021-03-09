@@ -84,4 +84,4 @@ If you want to have a peak inside the thinlinc server while it is running, try t
 $ docker exec -ti my-tl-demo bash
 ```
 
-*EOF*
+<!--EOF--> 
