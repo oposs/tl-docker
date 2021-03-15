@@ -40,12 +40,17 @@ docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro \
 
 Before you can login, the ThinLinc server requires some minimal configuration
 
-First add a user account
+First add a user account. Either with a password
 
 ```console
 docker exec my-tl-demo tlcfg add-user myuser mypassword
 ```
 
+or using an ssh public key
+
+```console
+docker exec my-demo-docker tlcfg add-ssh-user myuser "public ssh key"
+```
 Second, let the ThinLinc server know under what hostname it is reachable
 from the client.  This is a very important step, as ThinLinc uses a
 load-balancing system where it will tell your client to connect to the the
