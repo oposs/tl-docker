@@ -10,8 +10,36 @@ case $func in
             echo "$0 $func <username> <password>"
             exit
         fi
-        useradd --password $(perl -e "print crypt(q{$tlp},$$)") $tlu
-        echo "User created"
+        id $tlu > /dev/null 2>&1  # Check if user already exists
+        if [ $? -ne 0 ]; then
+          useradd --password $(perl -e "print crypt(q{$tlp},$$)") $tlu
+          echo "User created"
+        else
+          usermod --password $(perl -e "print crypt(q{$tlp},$$)") $tlu
+          echo "User modifed"
+        fi
+        ;;
+    add-ssh-user)
+        tlu=$2
+        tlk=$3
+        if [ "x$tlk" = "x" ]; then
+            echo "Expected:"
+            echo "$0 $func <username> <public ssh key>"
+            exit
+        fi
+        id $tlu > /dev/null 2>&1  # Check if user already exists
+        if [ $? -ne 0 ]; then
+           useradd -m $tlu        # Create user 
+        fi
+        HOMEDIR="`getent passwd $tlu | cut -d: -f6`" # Get home directory
+        umask 0077
+        if [ ! -d $HOMEDIR/.ssh ]; then
+           mkdir -p $HOMEDIR/.ssh # Create .ssh directory
+        fi
+        echo "$tlk" >> $HOMEDIR/.ssh/authorized_keys # Add public key to authorized_keys
+        chmod 0700 $HOMEDIR # Change permission
+        chown -R $tlu:$tlu $HOMEDIR # Change owner 
+        echo "User created with ssh-key"
         ;;
     set-hostname)
         tlh=$2
@@ -34,6 +62,8 @@ set the hostname, your instance will be visible under. Normally
 this might be the hostname of the machine where you are running docker.
 
 docker exec my-demo-docker tlcfg add-user myuser mypassword
+
+docker exec my-demo-docker tlcfg add-ssh-user myuser "public ssh key"
 
 docker exec my-demo-docker tlcfg set-hostname \$(hostname -f)
 
