@@ -7,6 +7,7 @@ apt-get update
 apt-get install -yq apt-utils
 yes | unminimize
 apt-get update
+chmod 0 /bin/systemctl
 apt-get install -yq \
     vim \
     locales \
@@ -24,6 +25,7 @@ apt-get install -yq \
     python-apt \
     python \
     ubuntu-desktop
+chmod 755 /bin/systemctl
 apt-get -qq clean
 apt-get -qq autoremove 
 
