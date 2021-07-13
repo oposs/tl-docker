@@ -25,7 +25,7 @@ apt-get install -yq \
     python \
     ubuntu-desktop
 
-apt-get -q -y remove sendmail-bin sendmail-base sendmail-cf snapd 
+apt-get -q -y remove snapd 
 apt-get -qq clean
 apt-get -qq autoremove 
 
