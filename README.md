@@ -21,7 +21,7 @@ port, accessible from the outside.  Keep the docker attached to the terminal
 `-t` to see all the messages it outputs to the console.
 
 ```console
-docker run --privileged --name my-tl-demo --publish 9922:22 -t oposs/tl-ubuntu
+docker run --privileged --pull=always --name my-tl-demo --publish 9922:22 -t oposs/tl-ubuntu
 ```
 
 **Pro Tip** If you feel uneasy about giving the ThinLinc docker image full
@@ -31,6 +31,7 @@ commandline to start.
 ```console
 docker run -v /sys/fs/cgroup/:/sys/fs/cgroup:ro \
   --tmpfs /run --tmpfs /run/lock \
+  --pull=always \
   --cap-add SYS_PTRACE --cap-add SYS_ADMIN \
   --name my-tl-demo --publish 9922:22 -t \
   oposs/tl-ubuntu
