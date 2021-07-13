@@ -24,11 +24,13 @@ apt-get install -yq \
     python-apt \
     python \
     ubuntu-desktop
+
+apt-get -q -y remove sendmail-bin sendmail-base sendmail-cf snapd 
 apt-get -qq clean
 apt-get -qq autoremove 
 
 # disable services we do not need
-systemctl disable gdm snapd wpa_supplicant upower sendmail fstrim.timer fstrim e2scrub_reap e2scrub_all e2scrub_all.timer
+systemctl disable gdm upower fstrim.timer fstrim e2scrub_reap e2scrub_all e2scrub_all.timer
 
 # Prevents apt-get upgrade issue when upgrading in a container environment.
 # Similar to https://bugs.launchpad.net/ubuntu/+source/makedev/+bug/1675163
