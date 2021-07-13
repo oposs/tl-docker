@@ -12,7 +12,7 @@ case $func in
         fi
         id $tlu > /dev/null 2>&1  # Check if user already exists
         if [ $? -ne 0 ]; then
-          useradd --password $(perl -e "print crypt(q{$tlp},$$)") $tlu
+          useradd --create-home --shell=/bin/bash --password $(perl -e "print crypt(q{$tlp},$$)") $tlu
           echo "User created"
         else
           usermod --password $(perl -e "print crypt(q{$tlp},$$)") $tlu
