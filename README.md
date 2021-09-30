@@ -91,6 +91,11 @@ If you want to have a peak inside the ThinLinc server while it is running, try t
 docker exec -ti my-tl-demo bash
 ```
 
+## Support
+
+If you have questions in connection with ThinLinc in general or
+thinlinc-demo-in-a-docker head over to the [ThinLinc Community](https://community.thinlinc.com/tag/docker).
+
 ## Build
 
 If you want to tinker with thinlinc, and modify it ... fork this repo and
