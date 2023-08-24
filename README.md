@@ -50,7 +50,7 @@ docker exec my-tl-demo tlcfg add-user myuser mypassword
 or using an ssh public key
 
 ```console
-docker exec my-demo-docker tlcfg add-ssh-user myuser "public ssh key"
+docker exec my-tl-demo tlcfg add-ssh-user myuser "public ssh key"
 ```
 Second, let the ThinLinc server know under what hostname it is reachable
 from the client.  This is a very important step, as ThinLinc uses a
