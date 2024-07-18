@@ -2,7 +2,7 @@ ARG UBUNTU_RELEASE=22.04
 FROM ubuntu:${UBUNTU_RELEASE}
 # yes got to repeat this line ... after FROM all is forgotten
 ARG UBUNTU_RELEASE=22.04
-ENV UBUNTU_RELEASE ${UBUNTU_RELEASE}
+ENV UBUNTU_RELEASE=${UBUNTU_RELEASE}
 STOPSIGNAL SIGRTMIN+3
 COPY build /build
 RUN cd /build; sh start.sh

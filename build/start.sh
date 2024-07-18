@@ -21,8 +21,6 @@ apt-get install -yq \
     joe \
     man-db \
     net-tools \
-    python-apt \
-    python \
     ubuntu-desktop
 
 apt-get -q -y remove snapd 
