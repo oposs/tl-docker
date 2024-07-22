@@ -23,7 +23,7 @@ apt-get install -yq \
     net-tools \
     ubuntu-desktop
 
-apt-get -q -y remove snapd 
+apt-get -q -y remove snapd acpid acpi-support
 apt-get -qq clean
 apt-get -qq autoremove 
 
