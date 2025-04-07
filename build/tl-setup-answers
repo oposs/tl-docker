@@ -1,16 +1,63 @@
-install-pygtk=yes
-email-address=root@localhost
-setup-selinux=no
-setup-nearest=no
-server-type=master
-setup-firewall=no
-install-python-ldap=yes
-setup-apparmor=no
-missing-answer=abort
-install-nfs=yes
-setup-thinlocal=no
-install-sshd=no
-tlwebadm-password=RH0KnE6efAOWQLiLRzrVaif9BxnZ1V6GwJMY9nNQvg95rNhSJRgOf.ej42J3xM.oLNzmyfbBeQrzU/HgPEXoh.
+# To generate a template for this file, run:
+# /opt/thinlinc/sbin/tl-setup --generate-answers=THIS-FILE
+# Then edit the file to suit your system.
+    
+# ThinLinc tl-setup answers file
+#
+# Edit this file to suit your systems and run:
+#  /opt/thinlinc/sbin/tl-setup -a THIS-FILE
+
+# Accept the end user license agreement
 accept-eula=yes
+
+# Configure as master or agent
+server-type=master
+
+# How should old Hiveconf files be handled?
 migrate-conf=ignore
+
+# Install required libraries and binaries?
 install-required-libs=yes
+
+# Install NFS client packages?
+install-nfs=yes
+
+# Install OpenSSH server?
+install-sshd=no
+
+# Install GTK+ and PyGObject packages?
+install-gtk=yes
+
+# Install python-ldap packages?
+install-python-ldap=yes
+
+# How to determine externally reachable hostname
+agent-hostname-choice=ip
+
+# Externally reachable hostname (only used if manual)
+#manual-agent-hostname=<hostname>
+
+# Send administrative messages to:
+email-address=root@localhost
+
+# Password for tlwebadm (generate with "/opt/thinlinc/sbin/tl-gen-auth"):
+tlwebadm-password=$6$757a34323677b435$CWY4/cvYryY/uD7UsQ/kKNqoRkCMiMRgQf1hvih6JZehP1/bMbWWJiMUIoUGSGkSkJJvwPjfMuhZZzzeJ7gka1
+
+# Set up the thinlocal printing queue?
+setup-thinlocal=no
+
+# Set up the nearest printing queue?
+setup-nearest=no
+
+# Configure the local firewall for ThinLinc services?
+setup-firewall=no
+
+# Set up SELinux policy module?
+setup-selinux=no
+
+# Set up AppArmor configuration?
+setup-apparmor=no
+
+# What should tl-setup do when it encounters a question without a matching answer in the answer file?
+missing-answer=abort
+
